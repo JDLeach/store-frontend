@@ -29,4 +29,11 @@ export class CartService {
   clearCart():void{
     this.productList = [];
   }
+
+  cartCount():number{
+    let itemCount = 0;
+    this.productList.forEach(item => itemCount+= item.quantity)
+
+    return itemCount;
+  }
 }

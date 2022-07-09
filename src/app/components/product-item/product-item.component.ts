@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { AppToastService, ToastInfo } from 'src/app/services/app-toast.service';
 
 // TODO add link to product detail page
 
@@ -13,7 +14,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductItemComponent implements OnInit {
   @Input() product:Product;
 
-  constructor(private cartService:CartService) {
+  constructor(private cartService:CartService, private appToastService:AppToastService) {
     this.product = {
       id: 1,
       name: "Book",
@@ -29,6 +30,7 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(): void{
     this.cartService.addToCart(this.product);
+    this.appToastService.show(`${this.product.name} added to cart!`,`${this.product.quantity} ${this.product.name}(s) have been added to your cart.`)
   }
 
   removeFromCart(product:Product): void{
