@@ -3,14 +3,35 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductsComponent } from './components/products/products.component';
+import { CartComponent } from './components/cart/cart.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
+
+// TODO add routing
+// TODO add product detail page
+// TODO add payment screen
+// TODO add confirmation message
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductItemComponent,
+    ProductsComponent,
+    CartComponent,
+    NavbarComponent,
+    ProductItemDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
