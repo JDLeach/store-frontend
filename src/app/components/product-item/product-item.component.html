@@ -1,5 +1,5 @@
 <div class="product-container">
-  <a routerLink='/productdetail' [state]="product">
+  <a (click)="navigateToDetail()">
     <img class="product-image" src={{product.url}} alt={{product.name}}/>
   </a>
   {{product.name}}

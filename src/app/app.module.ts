@@ -12,6 +12,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { ToastsComponent } from './components/toasts/toasts.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 // TODO add routing
 // TODO add product detail page
@@ -26,7 +27,8 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     CartComponent,
     NavbarComponent,
     ProductItemDetailComponent,
-    ToastsComponent
+    ToastsComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,

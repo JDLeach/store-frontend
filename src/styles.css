@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+body.light-theme{
+  --text-color: #222;
+  --bkg-color: #fff;
+  --btn-txt-color: #fff;
+  --btn-bg-color: rgb(11,88,160);
+}
+body{
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46,43,43);
+  --btn-bg-color: rgb(20,211,195);
+}
+
+body{
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
+.toast
+{
+  background-color: var(--bkg-color);
+}

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
+import { AppToastService } from 'src/app/services/app-toast.service';
 import { ProductService } from 'src/app/services/product.service';
-import { AppToastService, ToastInfo } from 'src/app/services/app-toast.service';
+import { Router } from '@angular/router';
 
 // TODO add link to product detail page
 
@@ -14,7 +15,7 @@ import { AppToastService, ToastInfo } from 'src/app/services/app-toast.service';
 export class ProductItemComponent implements OnInit {
   @Input() product:Product;
 
-  constructor(private cartService:CartService, private appToastService:AppToastService) {
+  constructor(private cartService:CartService, private _router:Router, private productService:ProductService, private appToastService:AppToastService) {
     this.product = {
       id: 1,
       name: "Book",
@@ -35,6 +36,11 @@ export class ProductItemComponent implements OnInit {
 
   removeFromCart(product:Product): void{
     this.cartService.removeFromCart(product);
+  }
+
+  navigateToDetail():void{
+    this.productService.setCurrentProduct(this.product);
+    this._router.navigateByUrl('/productdetail')
   }
 
 }

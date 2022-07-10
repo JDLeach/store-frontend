@@ -1,1 +1,5 @@
 ul.nav{position: sticky; top: 0;}
+
+button.mode{border: none; width: 40px; height: 40px; padding: 0; margin: 10px 10px;}
+button.mode.dark{background: url("/assets/global_dark.png") no-repeat;background-size: cover;}
+button.mode.light{background: url("/assets/global_light.png") no-repeat;background-size: cover;}

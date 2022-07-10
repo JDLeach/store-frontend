@@ -9,4 +9,7 @@
       Cart({{cartAmount()}})
     </a>
   </li>
+  <li class="nav-item" style="position: absolute; right: 0;">
+    <button (click)="changeMode()" class="mode nav-link {{modeClass}}"></button>
+  </li>
 </ul>

@@ -1,6 +1,103 @@
-<ul *ngFor="let product of cart">
-  <li>
-    <span>{{product.name}}</span>
-    <div>Quantity: {{product.quantity}}</div>
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="cart-container">
+        <li class="cart-item" *ngFor="let product of cart">
+          <a routerLink='/productdetail' [state]="product">
+            <img src={{product.url}} alt={{product.name}}>
+          </a>
+          <div class="cart-item-details">
+            <span>{{product.name}}</span>
+            <div>Price Each: ${{product.price}}</div>
+            <div>Quantity: {{product.quantity}}</div>
+            <input (change)="quantityChange($event, product)" class="number-input" type="number" name="quantity" id="quantity" min="1" value={{product.quantity}}>
+            <button (click)="removeProduct(product)" class="btn btn-danger">Remove</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="cart.length > 0">
+        <h3>Order Details:</h3>
+        <h5>Total Price: {{totalParsed}}</h5>
+        <form #form="ngForm" (ngSubmit)="submitOrder()" class="checkout">
+            <label for="name">
+              Full Name
+              <br>
+              <input
+                required
+                #customerName="ngModel"
+                placeholder="(minimum 5 characters)"
+                minlength="5"
+                type="text"
+                name="name"
+                id="name"
+                [(ngModel)]="name">
+            </label>
+            <label for="address">
+              Address
+              <br>
+              <input
+                type="text"
+                #customerAddress="ngModel"
+                required
+                minlength="8"
+                name="address"
+                id="address"
+                [(ngModel)]="address">
+            </label>
+            <label for="cc">
+              Credit Card Number
+              <input
+                #creditCardNumber="ngModel"
+                type="text"
+                required
+                pattern="[\d]*"
+                minlength="16"
+                maxlength="16"
+                name="cc"
+                id="cc"
+                [(ngModel)]="cc">
+            </label>
+            <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Submit</button>
+          </form>
+          <div *ngIf="customerName.invalid && customerName.dirty">
+            <div *ngIf="customerName.errors?.['required']">
+              Please provide your full name.
+            </div>
+            <div *ngIf="customerName.errors?.['minlength']">
+              Full name field must contain at least 5 characters.
+            </div>
+          </div>
+          <div *ngIf="customerAddress.invalid && customerAddress.dirty">
+            <div *ngIf="customerAddress.errors?.['required']">
+              Please provide your address.
+            </div>
+            <div *ngIf="customerAddress.errors?.['minlength']">
+              Address field must contain at least 8 characters.
+            </div>
+          </div>
+          <div *ngIf="creditCardNumber.invalid && creditCardNumber.dirty">
+            <div *ngIf="creditCardNumber.errors?.['pattern']">
+              Credit card number field must use numbers.
+            </div>
+            <div *ngIf="creditCardNumber.errors?.['required']">
+              Please provide your credit card number.
+            </div>
+            <div *ngIf="creditCardNumber.errors?.['minlength'] || creditCardNumber.errors?.['maxlength']">
+              Credit card number field must contain all 16 characters.
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="cart.length == 0">
+    <div class="empty-cart-message">
+      Your cart is empty =(
+      <br>
+      <a routerLink='/'>
+        Go add some cool stuff!
+      </a>
+    </div>
+  </div>
+</div>

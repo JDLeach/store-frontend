@@ -10,11 +10,18 @@ export class ProductService {
 
   carList: Product[] = [];
 
+  currentProduct: Product = new Product;
   constructor(private http: HttpClient) {
-
    }
 
   getProducts(): Observable<Product[]>{
     return this.http.get<Product[]>('assets/data.json');
+  }
+
+  setCurrentProduct(product:Product):void{
+    this.currentProduct = product;
+  }
+  getCurrentProduct():Product{
+    return this.currentProduct;
   }
 }

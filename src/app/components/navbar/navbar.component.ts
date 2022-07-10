@@ -8,6 +8,9 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class NavbarComponent implements OnInit {
 
+  darkMode:boolean = true;
+  modeClass = 'dark';
+
   constructor(private cartService:CartService) { }
 
   ngOnInit(): void {
@@ -17,4 +20,9 @@ export class NavbarComponent implements OnInit {
     return this.cartService.cartCount();
   }
 
+  changeMode():void{
+    this.darkMode = !this.darkMode;
+    this.modeClass = this.darkMode ? 'dark' : 'light'
+    document.body.classList.toggle('light-theme')
+  }
 }

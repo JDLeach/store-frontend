@@ -7,12 +7,11 @@ export class Product {
   url: string;
 
   constructor(){
-    this.id = 1;
+    this.id = -1;
     this.name = "";
     this.description = "";
-    this.price = 1.00;
+    this.price = 0.00;
     this.quantity = 1;
     this.url = "";
   }
-
 }

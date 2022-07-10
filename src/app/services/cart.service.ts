@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Order } from '../models/Order';
 import { Product } from '../models/Product';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { Product } from '../models/Product';
 })
 export class CartService {
   productList: Product[] = [];
+
+  orderDetails = new Order;
 
   constructor() { }
 
@@ -23,7 +26,7 @@ export class CartService {
   }
 
   removeFromCart(product:Product):void{
-    this.productList.filter(p => p.id != product.id)
+    this.productList = this.productList.filter(p => p.id != product.id)
   }
 
   clearCart():void{
@@ -35,5 +38,13 @@ export class CartService {
     this.productList.forEach(item => itemCount+= item.quantity)
 
     return itemCount;
+  }
+
+  setOrderDetails(order:Order):void{
+    this.orderDetails = order;
+  }
+
+  getOrderDetails():Order{
+    return this.orderDetails;
   }
 }
