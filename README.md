@@ -1,10 +1,15 @@
 # StoreFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+This project represents a front-end application for an online store.  
+The store front has a product list, product detail pages, cart functionality, an order submit function, and a dark/light mode (globe icon on the top-left)
 
 ## This requires Angular CLI
 
 Follow https://angular.io/cli if Angular CLI needs to be installed.
+
+## Install Dependencies
+
+Run 'npm i' form inside the project folder to install all dependencies
 
 ## Development server
 
