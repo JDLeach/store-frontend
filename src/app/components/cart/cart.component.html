@@ -3,9 +3,9 @@
     <div class="col-md-8">
       <ul class="cart-container">
         <li class="cart-item" *ngFor="let product of cart">
-          <a routerLink='/productdetail' [state]="product">
+          <button (click)="goToProductDetail(product)">
             <img src={{product.url}} alt={{product.name}}>
-          </a>
+          </button>
           <div class="cart-item-details">
             <span>{{product.name}}</span>
             <div>Price Each: ${{product.price}}</div>

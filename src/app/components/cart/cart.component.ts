@@ -3,6 +3,8 @@ import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/models/Product';
 import { Router } from '@angular/router';
 import { Order } from 'src/app/models/Order';
+import { AppToastService } from 'src/app/services/app-toast.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +20,7 @@ export class CartComponent implements OnInit {
 
   cart:Product[] = [];
 
-  constructor(private cartService: CartService, private _router: Router) { }
+  constructor(private cartService: CartService, private productService:ProductService, private _router: Router, private appToastService:AppToastService) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
@@ -34,6 +36,10 @@ export class CartComponent implements OnInit {
     this.updateTotalPrice()
   }
 
+  goToProductDetail(product:Product):void{
+    this.productService.navigateToDetail(product);
+  }
+
   updateTotalPrice():void{
     this.total = 0;
     this.cart.forEach(p => this.total+= p.price * p.quantity);
@@ -44,6 +50,7 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCart(product);
     this.cart = this.cartService.getCart();
     this.updateTotalPrice();
+    this.appToastService.show(`${product.name}removed from cart!`,`${product.quantity} ${product.name}(s) have been removed from your cart.`);
   }
 
   submitOrder():void{

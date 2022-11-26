@@ -31,11 +31,12 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(): void{
     this.cartService.addToCart(this.product);
-    this.appToastService.show(`${this.product.name} added to cart!`,`${this.product.quantity} ${this.product.name}(s) have been added to your cart.`)
+    this.appToastService.show(`${this.product.name} added to cart!`,`${this.product.quantity} ${this.product.name}(s) have been added to your cart.`);
   }
 
   removeFromCart(product:Product): void{
     this.cartService.removeFromCart(product);
+    this.appToastService.show(`${this.product.name}removed from cart!`,`${this.product.quantity} ${this.product.name}(s) have been removed from your cart.`);
   }
 
   navigateToDetail():void{
