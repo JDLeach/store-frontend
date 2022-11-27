@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { AppToastService } from 'src/app/services/app-toast.service';
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product:Product;
+  @Output() goToProductDetail: EventEmitter<Product> = new EventEmitter;
 
   constructor(private cartService:CartService, private _router:Router, private productService:ProductService, private appToastService:AppToastService) {
     this.product = {
@@ -29,6 +30,10 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toDetail(): void{
+    this.goToProductDetail.emit(this.product);
+  }
+
   addToCart(): void{
     this.cartService.addToCart(this.product);
     this.appToastService.show(`${this.product.name} added to cart!`,`${this.product.quantity} ${this.product.name}(s) have been added to your cart.`);
@@ -38,10 +43,4 @@ export class ProductItemComponent implements OnInit {
     this.cartService.removeFromCart(product);
     this.appToastService.show(`${this.product.name}removed from cart!`,`${this.product.quantity} ${this.product.name}(s) have been removed from your cart.`);
   }
-
-  navigateToDetail():void{
-    this.productService.setCurrentProduct(this.product);
-    this._router.navigateByUrl('/productdetail')
-  }
-
 }

@@ -57,7 +57,8 @@
                 maxlength="16"
                 name="cc"
                 id="cc"
-                [(ngModel)]="cc">
+                [(ngModel)]="cc"
+                (ngModelChange)="validateCreditCard($event)">
             </label>
             <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Submit</button>
           </form>
@@ -77,15 +78,9 @@
               Address field must contain at least 8 characters.
             </div>
           </div>
-          <div *ngIf="creditCardNumber.invalid && creditCardNumber.dirty">
-            <div *ngIf="creditCardNumber.errors?.['pattern']">
-              Credit card number field must use numbers.
-            </div>
-            <div *ngIf="creditCardNumber.errors?.['required']">
-              Please provide your credit card number.
-            </div>
-            <div *ngIf="creditCardNumber.errors?.['minlength'] || creditCardNumber.errors?.['maxlength']">
-              Credit card number field must contain all 16 characters.
+          <div *ngIf="creditCardError.length > 0 && creditCardNumber.dirty">
+            <div *ngFor="let error of creditCardError">
+              <div>{{error}}</div>
             </div>
           </div>
       </div>

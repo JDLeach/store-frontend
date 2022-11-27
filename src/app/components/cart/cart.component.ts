@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   cc:string = '';
   total:number = 0;
   totalParsed:string = '';
+  creditCardError:Array<string> = [];
 
   cart:Product[] = [];
 
@@ -51,6 +52,18 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getCart();
     this.updateTotalPrice();
     this.appToastService.show(`${product.name}removed from cart!`,`${product.quantity} ${product.name}(s) have been removed from your cart.`);
+  }
+
+  validateCreditCard(creditCardNumber:string){
+    let errorText = [];
+    if(creditCardNumber.length < 16 || creditCardNumber.length > 16){
+      errorText.push('Credit card number field must be 16 characters.')
+    }
+    console.log(/^[0-9]+$/.test(creditCardNumber));
+    if(creditCardNumber.length > 0 && !/^[0-9]+$/.test(creditCardNumber)){
+      errorText.push('Credit card number field must use numbers.')
+    }
+    this.creditCardError = errorText;
   }
 
   submitOrder():void{
