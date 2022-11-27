@@ -23,4 +23,7 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  goToProductDetail(product:Product):void{
+    this.productService.navigateToDetail(product);
+  }
 }
